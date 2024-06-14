@@ -20,7 +20,7 @@ import java.util.List;
  * @author dinglevin
  * @since 2024/6/3 16:40
  */
-public class Number68 {
+public class Number068 {
     public static void main(String[] args) {
         String[] words = new String[] {"This", "is", "an", "example", "of", "text", "justification."};
         int maxWidth = 16;

@@ -10,17 +10,30 @@ import com.google.common.collect.Lists;
 
 public class Number002Test {
     @Test
-    public void testAddTwoNumbers() {
-        ListNode result = Number002.addTwoNumbers(create(new int[] { 2, 4, 3 }),
+    public void testAddTwoNumbersV0() {
+        ListNode result = Number002.addTwoNumbersV0(create(new int[] { 2, 4, 3 }),
                 create(new int[] { 5, 6, 4 }));
         assertEquals(Lists.newArrayList(7, 0, 8), convertToList(result));
 
-        result = Number002.addTwoNumbers(create(new int[] { 0 }), create(new int[] { 0 }));
+        result = Number002.addTwoNumbersV0(create(new int[] { 0 }), create(new int[] { 0 }));
         assertEquals(Lists.newArrayList(0), convertToList(result));
 
-        result = Number002.addTwoNumbers(create(new int[] { 9, 9, 9, 9, 9, 9, 9 }),
+        result = Number002.addTwoNumbersV0(create(new int[] { 9, 9, 9, 9, 9, 9, 9 }),
                 create(new int[] { 9, 9, 9, 9 }));
+        assertEquals(Lists.newArrayList(8, 9, 9, 9, 0, 0, 0, 1), convertToList(result));
+    }
 
+    @Test
+    public void testAddTwoNumbersV1() {
+        ListNode result = Number002.addTwoNumbersV1(create(new int[] { 2, 4, 3 }),
+                create(new int[] { 5, 6, 4 }));
+        assertEquals(Lists.newArrayList(7, 0, 8), convertToList(result));
+
+        result = Number002.addTwoNumbersV0(create(new int[] { 0 }), create(new int[] { 0 }));
+        assertEquals(Lists.newArrayList(0), convertToList(result));
+
+        result = Number002.addTwoNumbersV0(create(new int[] { 9, 9, 9, 9, 9, 9, 9 }),
+                create(new int[] { 9, 9, 9, 9 }));
         assertEquals(Lists.newArrayList(8, 9, 9, 9, 0, 0, 0, 1), convertToList(result));
     }
 

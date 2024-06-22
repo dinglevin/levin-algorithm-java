@@ -44,7 +44,7 @@ public class Number002 {
     private Number002() {
     }
 
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbersV0(ListNode l1, ListNode l2) {
         ListNode p1 = l1;
         ListNode p2 = l2;
 
@@ -71,5 +71,41 @@ public class Number002 {
         }
 
         return head.next;
+    }
+
+    public static ListNode addTwoNumbersV1(ListNode l1, ListNode l2) {
+        ListNode header = new ListNode();
+        ListNode p = header;
+        int overflow = 0;
+        while (l1 != null && l2 != null) {
+            int result = l1.val + l2.val + overflow;
+            overflow = (result >= 10 ? 1 : 0);
+
+            p.next = new ListNode(result % 10);
+            p = p.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        p.next = (l1 == null ? l2 : l1);
+        if (overflow != 0) {
+            if (p.next == null) {
+                p.next = new ListNode(overflow);
+            } else {
+                while (overflow != 0 && p.next != null) {
+                    p.next.val += overflow;
+                    overflow = (p.val >= 10 ? 1 : 0);
+                    if (p.val >= 10) {
+                        p.val -= 10;
+                    }
+                    p = p.next;
+                }
+                if (overflow != 0) {
+                    p.next = new ListNode(overflow);
+                }
+            }
+        }
+
+        return header.next;
     }
 }

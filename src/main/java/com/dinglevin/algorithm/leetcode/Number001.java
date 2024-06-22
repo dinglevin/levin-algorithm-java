@@ -37,6 +37,26 @@ import java.util.Map;
  * @since 2024/4/10 20:43
  */
 public class Number001 {
+    private Number001() {
+    }
+
+    public static int[] twoSumV0(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+
+        return new int[0];
+    }
+
     public static int[] twoSumV1(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return new int[0];
@@ -58,26 +78,10 @@ public class Number001 {
             return new int[0];
         }
 
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-
-        return new int[0];
-    }
-
-    public static int[] twoSumV3(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return new int[0];
-        }
-
         int[] sortedNum = Arrays.copyOf(nums, nums.length);
         Arrays.sort(sortedNum);
-        int left = 0, right = nums.length - 1;
+        int left = 0;
+        int right = nums.length - 1;
         while (left != right) {
             int sum = sortedNum[left] + sortedNum[right];
             if (sum == target) {

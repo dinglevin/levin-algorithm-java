@@ -1,8 +1,8 @@
 package com.dinglevin.algorithm.leetcode;
 
-import com.google.common.collect.Lists;
-
 import java.util.List;
+
+import com.google.common.collect.Lists;
 
 /**
  * 问题描述:
@@ -22,56 +22,56 @@ import java.util.List;
  * @since 2024/6/3 16:40
  */
 public class Number068 {
-    public static void main(String[] args) {
-        String[] words = new String[] { "This", "is", "an", "example", "of", "text", "justification." };
-        int maxWidth = 16;
-        System.out.println(fullJustify(words, maxWidth));
+    public static List<String> fullJustify(String[] words, int maxWidth) {
+        return new Version1().invoke(words, maxWidth);
     }
 
-    private static List<String> fullJustify(String[] words, int maxWidth) {
-        List<String> lines = Lists.newArrayList();
+    public static class Version1 {
+        public List<String> invoke(String[] words, int maxWidth) {
+            List<String> lines = Lists.newArrayList();
 
-        int index = 0;
-        while (index < words.length) {
-            int totalChars = words[index].length();
-            int last = index + 1;
-            while (last < words.length && (totalChars + words[last].length() + 1) <= maxWidth) {
-                totalChars += (words[last].length() + 1);
-                last++;
-            }
-
-            StringBuilder line = new StringBuilder();
-            int numOfWords = last - index;
-            int numOfSpaces = maxWidth - totalChars + numOfWords - 1;
-
-            if (last == words.length || numOfWords == 1) {
-                for (int i = 0; i < numOfWords; i++) {
-                    line.append(words[i + index]);
-                    if (i != numOfWords - 1) {
-                        line.append(" ");
-                    }
+            int index = 0;
+            while (index < words.length) {
+                int totalChars = words[index].length();
+                int last = index + 1;
+                while (last < words.length && (totalChars + words[last].length() + 1) <= maxWidth) {
+                    totalChars += (words[last].length() + 1);
+                    last++;
                 }
-                while (line.length() < maxWidth) {
-                    line.append(" ");
-                }
-            } else {
-                int spaceBetweenWords = numOfSpaces / (numOfWords - 1);
-                int extraSpaces = numOfSpaces % (numOfWords - 1);
-                for (int i = 0; i < numOfWords; i++) {
-                    line.append(words[i + index]);
-                    if (i < numOfWords - 1) {
-                        int spacesToApply = spaceBetweenWords + (i < extraSpaces ? 1 : 0);
-                        for (int j = 0; j < spacesToApply; j++) {
+
+                StringBuilder line = new StringBuilder();
+                int numOfWords = last - index;
+                int numOfSpaces = maxWidth - totalChars + numOfWords - 1;
+
+                if (last == words.length || numOfWords == 1) {
+                    for (int i = 0; i < numOfWords; i++) {
+                        line.append(words[i + index]);
+                        if (i != numOfWords - 1) {
                             line.append(" ");
                         }
                     }
+                    while (line.length() < maxWidth) {
+                        line.append(" ");
+                    }
+                } else {
+                    int spaceBetweenWords = numOfSpaces / (numOfWords - 1);
+                    int extraSpaces = numOfSpaces % (numOfWords - 1);
+                    for (int i = 0; i < numOfWords; i++) {
+                        line.append(words[i + index]);
+                        if (i < numOfWords - 1) {
+                            int spacesToApply = spaceBetweenWords + (i < extraSpaces ? 1 : 0);
+                            for (int j = 0; j < spacesToApply; j++) {
+                                line.append(" ");
+                            }
+                        }
+                    }
                 }
+
+                lines.add(line.toString());
+                index = last;
             }
 
-            lines.add(line.toString());
-            index = last;
+            return lines;
         }
-
-        return lines;
     }
 }

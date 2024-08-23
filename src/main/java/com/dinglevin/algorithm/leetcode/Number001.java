@@ -40,77 +40,89 @@ public class Number001 {
     private Number001() {
     }
 
-    public static int[] twoSumV0(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return new int[0];
-        }
-
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
-            }
-            map.put(nums[i], i);
-        }
-
-        return new int[0];
+    public static int[] twoSum(int[] nums, int target) {
+        return new Version1().invoke(nums, target);
+        // return new Version2().invoke(nums, target);
+        // return new Version3().invoke(nums, target);
     }
 
-    public static int[] twoSumV1(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return new int[0];
-        }
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[] { i, j };
-                }
+    public static class Version1 {
+        public int[] invoke(int[] nums, int target) {
+            if (nums == null || nums.length == 0) {
+                return new int[0];
             }
-        }
-
-        return new int[0];
-    }
-
-    public static int[] twoSumV2(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return new int[0];
-        }
-
-        int[] sortedNum = Arrays.copyOf(nums, nums.length);
-        Arrays.sort(sortedNum);
-        int left = 0;
-        int right = nums.length - 1;
-        while (left != right) {
-            int sum = sortedNum[left] + sortedNum[right];
-            if (sum == target) {
-                return new int[] { findIndex(nums, sortedNum[left], false),
-                        findIndex(nums, sortedNum[right], true) };
-            } else if (sum < target) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-
-        return new int[0];
-    }
-
-    private static int findIndex(int[] nums, int value, boolean reverse) {
-        if (reverse) {
-            for (int i = nums.length - 1; i >= 0; i--) {
-                if (value == nums[i]) {
-                    return i;
-                }
-            }
-        } else {
+    
+            Map<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
-                if (value == nums[i]) {
-                    return i;
+                int complement = target - nums[i];
+                if (map.containsKey(complement)) {
+                    return new int[] { map.get(complement), i };
+                }
+                map.put(nums[i], i);
+            }
+    
+            return new int[0];
+        }
+    }
+
+    public static class Version2 {
+        public int[] invoke(int[] nums, int target) {
+            if (nums == null || nums.length == 0) {
+                return new int[0];
+            }
+    
+            for (int i = 0; i < nums.length; i++) {
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (nums[i] + nums[j] == target) {
+                        return new int[] { i, j };
+                    }
                 }
             }
+    
+            return new int[0];
         }
-        return -1;
+    }
+
+    public static class Version3 {
+        public int[] invoke(int[] nums, int target) {
+            if (nums == null || nums.length == 0) {
+                return new int[0];
+            }
+    
+            int[] sortedNum = Arrays.copyOf(nums, nums.length);
+            Arrays.sort(sortedNum);
+            int left = 0;
+            int right = nums.length - 1;
+            while (left != right) {
+                int sum = sortedNum[left] + sortedNum[right];
+                if (sum == target) {
+                    return new int[] { findIndex(nums, sortedNum[left], false),
+                            findIndex(nums, sortedNum[right], true) };
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+    
+            return new int[0];
+        }
+
+        private int findIndex(int[] nums, int value, boolean reverse) {
+            if (reverse) {
+                for (int i = nums.length - 1; i >= 0; i--) {
+                    if (value == nums[i]) {
+                        return i;
+                    }
+                }
+            } else {
+                for (int i = 0; i < nums.length; i++) {
+                    if (value == nums[i]) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
     }
 }

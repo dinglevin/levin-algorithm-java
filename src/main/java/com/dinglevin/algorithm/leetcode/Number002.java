@@ -44,68 +44,77 @@ public class Number002 {
     private Number002() {
     }
 
-    public static ListNode addTwoNumbersV0(ListNode l1, ListNode l2) {
-        ListNode p1 = l1;
-        ListNode p2 = l2;
-
-        ListNode head = new ListNode();
-        ListNode cur = head;
-        int carrier = 0;
-        while (p1 != null || p2 != null) {
-            int sum = carrier;
-            if (p1 != null) {
-                sum += p1.val;
-                p1 = p1.next;
-            }
-            if (p2 != null) {
-                sum += p2.val;
-                p2 = p2.next;
-            }
-
-            cur.next = new ListNode(sum % 10);
-            carrier = sum / 10;
-            cur = cur.next;
-        }
-        if (carrier > 0) {
-            cur.next = new ListNode(carrier);
-        }
-
-        return head.next;
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        return new Version1().invoke(l1, l2);
+        // return new Version2().invoke(l1, l2);
     }
 
-    public static ListNode addTwoNumbersV1(ListNode l1, ListNode l2) {
-        ListNode header = new ListNode();
-        ListNode p = header;
-        int overflow = 0;
-        while (l1 != null && l2 != null) {
-            int result = l1.val + l2.val + overflow;
-            overflow = (result >= 10 ? 1 : 0);
+    public static class Version1 {
+        public ListNode invoke(ListNode l1, ListNode l2) {
+            ListNode p1 = l1;
+            ListNode p2 = l2;
 
-            p.next = new ListNode(result % 10);
-            p = p.next;
-            l1 = l1.next;
-            l2 = l2.next;
-        }
-
-        p.next = (l1 == null ? l2 : l1);
-        if (overflow != 0) {
-            if (p.next == null) {
-                p.next = new ListNode(overflow);
-            } else {
-                while (overflow != 0 && p.next != null) {
-                    p.next.val += overflow;
-                    overflow = (p.val >= 10 ? 1 : 0);
-                    if (p.val >= 10) {
-                        p.val -= 10;
-                    }
-                    p = p.next;
+            ListNode head = new ListNode();
+            ListNode cur = head;
+            int carrier = 0;
+            while (p1 != null || p2 != null) {
+                int sum = carrier;
+                if (p1 != null) {
+                    sum += p1.val;
+                    p1 = p1.next;
                 }
-                if (overflow != 0) {
+                if (p2 != null) {
+                    sum += p2.val;
+                    p2 = p2.next;
+                }
+
+                cur.next = new ListNode(sum % 10);
+                carrier = sum / 10;
+                cur = cur.next;
+            }
+            if (carrier > 0) {
+                cur.next = new ListNode(carrier);
+            }
+
+            return head.next;
+        }
+    }
+
+    public static class Version2 {
+        public ListNode invoke(ListNode l1, ListNode l2) {
+            ListNode header = new ListNode();
+            ListNode p = header;
+            int overflow = 0;
+            while (l1 != null && l2 != null) {
+                int result = l1.val + l2.val + overflow;
+                overflow = (result >= 10 ? 1 : 0);
+
+                p.next = new ListNode(result % 10);
+                p = p.next;
+                l1 = l1.next;
+                l2 = l2.next;
+            }
+
+            p.next = (l1 == null ? l2 : l1);
+            if (overflow != 0) {
+                if (p.next == null) {
                     p.next = new ListNode(overflow);
+                } else {
+                    while (overflow != 0 && p.next != null) {
+                        p.next.val += overflow;
+                        overflow = (p.next.val >= 10 ? 1 : 0);
+                        if (p.next.val >= 10) {
+                            p.next.val -= 10;
+                        }
+                        p = p.next;
+                    }
+                    if (overflow != 0) {
+                        p.next = new ListNode(overflow);
+                    }
                 }
             }
-        }
 
-        return header.next;
+            return header.next;
+        }
     }
 }

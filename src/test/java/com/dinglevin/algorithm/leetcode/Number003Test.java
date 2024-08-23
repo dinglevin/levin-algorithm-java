@@ -6,20 +6,20 @@ import org.junit.Test;
 
 public class Number003Test {
     @Test
-    public void testLengthOfLongestSubstringV0() {
-        assertEquals(2, Number003.lengthOfLongestSubstringV0("abba"));
-        assertEquals(3, Number003.lengthOfLongestSubstringV0("abcabcbb"));
-        assertEquals(1, Number003.lengthOfLongestSubstringV0("bbbbb"));
-        assertEquals(3, Number003.lengthOfLongestSubstringV0("pwwkew"));
-        assertEquals(4, Number003.lengthOfLongestSubstringV0("abcd"));
+    public void testLengthOfLongestSubstringV1() {
+        assertEquals(2, new Number003.Version1().invoke("abba"));
+        assertEquals(3, new Number003.Version1().invoke("abcabcbb"));
+        assertEquals(1, new Number003.Version1().invoke("bbbbb"));
+        assertEquals(3, new Number003.Version1().invoke("pwwkew"));
+        assertEquals(4, new Number003.Version1().invoke("abcd"));
     }
 
     @Test
-    public void testLengthOfLongestSubstringV1() {
-        assertEquals(2, Number003.lengthOfLongestSubstringV1("abba"));
-        assertEquals(3, Number003.lengthOfLongestSubstringV1("abcabcbb"));
-        assertEquals(1, Number003.lengthOfLongestSubstringV1("bbbbb"));
-        assertEquals(3, Number003.lengthOfLongestSubstringV1("pwwkew"));
-        assertEquals(4, Number003.lengthOfLongestSubstringV1("abcd"));
+    public void testLengthOfLongestSubstringV2() {
+        assertEquals(2, new Number003.Version2().invoke("abba"));
+        assertEquals(3, new Number003.Version2().invoke("abcabcbb"));
+        assertEquals(1, new Number003.Version2().invoke("bbbbb"));
+        assertEquals(3, new Number003.Version2().invoke("pwwkew"));
+        assertEquals(4, new Number003.Version2().invoke("abcd"));
     }
 }

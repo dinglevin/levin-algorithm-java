@@ -32,37 +32,46 @@ public class Number003 {
     private Number003() {
     }
 
-    public static int lengthOfLongestSubstringV0(String s) {
-        Map<Character, Integer> map = new HashMap<>();
-        int maxLen = 0;
-        int start = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            Integer existsIndex = map.get(c);
-            if (existsIndex != null && existsIndex >= start) {
-                start = existsIndex + 1;
-            }
-            maxLen = Math.max(maxLen, i - start + 1);
-            map.put(c, i);
-        }
-
-        return maxLen;
+    public static int lengthOfLongestSubstring(String s) {
+        return new Version1().invoke(s);
+        // return new Version2().invoke(s);
     }
 
-    public static int lengthOfLongestSubstringV1(String s) {
-        int maxLen = 0;
-        for (int i = 0; i < s.length(); i++) {
-            Set<Character> charSet = new HashSet<>();
-            charSet.add(s.charAt(i));
-
-            int j = i + 1;
-            while (j < s.length() && !charSet.contains(s.charAt(j))) {
-                charSet.add(s.charAt(j));
-                j++;
+    public static class Version1 {
+        public int invoke(String s) {
+            Map<Character, Integer> map = new HashMap<>();
+            int maxLen = 0;
+            int start = 0;
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                Integer existsIndex = map.get(c);
+                if (existsIndex != null && existsIndex >= start) {
+                    start = existsIndex + 1;
+                }
+                maxLen = Math.max(maxLen, i - start + 1);
+                map.put(c, i);
             }
 
-            maxLen = Math.max(maxLen, charSet.size());
+            return maxLen;
         }
-        return maxLen;
+    }
+
+    public static class Version2 {
+        public int invoke(String s) {
+            int maxLen = 0;
+            for (int i = 0; i < s.length(); i++) {
+                Set<Character> charSet = new HashSet<>();
+                charSet.add(s.charAt(i));
+    
+                int j = i + 1;
+                while (j < s.length() && !charSet.contains(s.charAt(j))) {
+                    charSet.add(s.charAt(j));
+                    j++;
+                }
+    
+                maxLen = Math.max(maxLen, charSet.size());
+            }
+            return maxLen;
+        }
     }
 }

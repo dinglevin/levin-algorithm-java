@@ -36,8 +36,8 @@ import java.util.Map;
  * @author dinglevin
  * @since 2024/4/10 20:43
  */
-public class Number001 {
-    private Number001() {
+public class Number0001 {
+    private Number0001() {
     }
 
     public static int[] twoSum(int[] nums, int target) {

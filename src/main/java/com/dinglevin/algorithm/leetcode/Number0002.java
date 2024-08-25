@@ -40,8 +40,8 @@ class ListNode {
     }
 }
 
-public class Number002 {
-    private Number002() {
+public class Number0002 {
+    private Number0002() {
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {

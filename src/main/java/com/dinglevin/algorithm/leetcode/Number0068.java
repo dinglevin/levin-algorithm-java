@@ -21,7 +21,7 @@ import com.google.common.collect.Lists;
  * @author dinglevin
  * @since 2024/6/3 16:40
  */
-public class Number068 {
+public class Number0068 {
     public static List<String> fullJustify(String[] words, int maxWidth) {
         return new Version1().invoke(words, maxWidth);
     }

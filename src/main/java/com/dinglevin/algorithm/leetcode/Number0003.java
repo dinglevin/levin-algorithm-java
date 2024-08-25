@@ -28,8 +28,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Number003 {
-    private Number003() {
+public class Number0003 {
+    private Number0003() {
     }
 
     public static int lengthOfLongestSubstring(String s) {

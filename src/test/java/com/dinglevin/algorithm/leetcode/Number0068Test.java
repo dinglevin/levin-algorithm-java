@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
-public class Number068Test {
+public class Number0068Test {
     @Test
     public void testFullJustify() {
-        List<String> actualList = new Number068.Version1().invoke(
+        List<String> actualList = new Number0068.Version1().invoke(
                 new String[] { "This", "is", "an", "example", "of", "text", "justification." },
                 16);
         List<String> expectedList = Lists.newArrayList(

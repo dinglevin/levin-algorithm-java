@@ -11,18 +11,25 @@ import org.junit.Test;
  * @since 2021/6/27 12:57 周日
  */
 public class Number0005Test {
-    private Number0005 executor = new Number0005();
-
     @Test
-    public void testVersion1LongestPalindrome() {
-        assertEquals("bb", executor.version1LongestPalindrome("abb"));
-        assertEquals("bb", executor.version1LongestPalindrome("cbbd"));
+    public void testVersion1() {
+        assertEquals("bb", new Number0005.Version1().invoke("abb"));
+        assertEquals("bb", new Number0005.Version1().invoke("cbbd"));
+        assertEquals("a", new Number0005.Version1().invoke("a"));
+        assertEquals("a", new Number0005.Version1().invoke("abcdefg"));
     }
 
     @Test
-    public void testVersion2LongestPalindrome() {
-        assertEquals("bb", executor.version2LongestPalindrome("bb"));
-        assertEquals("bb", executor.version2LongestPalindrome("abb"));
-        assertEquals("bb", executor.version2LongestPalindrome("cbbd"));
+    public void testVersion2() {
+        assertEquals("bb", new Number0005.Version2().invoke("bb"));
+        assertEquals("bb", new Number0005.Version2().invoke("abb"));
+        assertEquals("bb", new Number0005.Version2().invoke("cbbd"));
+    }
+
+    @Test
+    public void testVersion3() {
+        assertEquals("bb", new Number0005.Version3().invoke("bb"));
+        assertEquals("bb", new Number0005.Version3().invoke("abb"));
+        assertEquals("bb", new Number0005.Version3().invoke("cbbd"));
     }
 }

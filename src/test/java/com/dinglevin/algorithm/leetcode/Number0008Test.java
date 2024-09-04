@@ -15,4 +15,15 @@ public class Number0008Test {
         assertEquals(0, new Number0008.Version1().invoke("0-1"));
         assertEquals(0, new Number0008.Version1().invoke("words and 987"));
     }
+
+    @Test
+    public void testVersion2() {
+        assertEquals(0, new Number0008.Version2().invoke(" "));
+        assertEquals(0, new Number0008.Version2().invoke("-+12"));
+        assertEquals(42, new Number0008.Version2().invoke("42"));
+        assertEquals(-42, new Number0008.Version2().invoke(" -042"));
+        assertEquals(1337, new Number0008.Version2().invoke("1337c0d3"));
+        assertEquals(0, new Number0008.Version2().invoke("0-1"));
+        assertEquals(0, new Number0008.Version2().invoke("words and 987"));
+    }
 }

@@ -23,23 +23,6 @@
  */
 package com.dinglevin.algorithm.leetcode;
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
 public class Number0002 {
     private Number0002() {
     }
@@ -115,6 +98,23 @@ public class Number0002 {
             }
 
             return header.next;
+        }
+    }
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+    
+        ListNode() {
+        }
+    
+        ListNode(int val) {
+            this.val = val;
+        }
+    
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
         }
     }
 }

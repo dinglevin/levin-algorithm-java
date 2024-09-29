@@ -1,5 +1,7 @@
 package com.dinglevin.algorithm.others;
 
+import com.dinglevin.algorithm.model.ListNode;
+
 /**
  * 描述：ListReverse
  *
@@ -13,32 +15,15 @@ public class ListReverse {
         }
 
         ListNode prev = header;
-        ListNode current = header.next;
+        ListNode current = header.getNext();
         while (current != null) {
-            ListNode next = current.next;
-            current.next = prev;
+            ListNode next = current.getNext();
+            current.setNext(prev);
             prev = current;
             current = next;
         }
 
-        header.next = null;
+        header.setNext(null);
         return prev;
-    }
-
-    public static class ListNode {
-        int value;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int value) {
-            this.value = value;
-        }
-
-        ListNode(int value, ListNode next) {
-            this.value = value;
-            this.next = next;
-        }
     }
 }

@@ -23,6 +23,8 @@
  */
 package com.dinglevin.algorithm.leetcode;
 
+import com.dinglevin.algorithm.model.ListNode;
+
 public class Number0002 {
     private Number0002() {
     }
@@ -43,23 +45,23 @@ public class Number0002 {
             while (p1 != null || p2 != null) {
                 int sum = carrier;
                 if (p1 != null) {
-                    sum += p1.val;
-                    p1 = p1.next;
+                    sum += p1.getVal();
+                    p1 = p1.getNext();
                 }
                 if (p2 != null) {
-                    sum += p2.val;
-                    p2 = p2.next;
+                    sum += p2.getVal();
+                    p2 = p2.getNext();
                 }
 
-                cur.next = new ListNode(sum % 10);
+                cur.setNext(new ListNode(sum % 10));
                 carrier = sum / 10;
-                cur = cur.next;
+                cur = cur.getNext();
             }
             if (carrier > 0) {
-                cur.next = new ListNode(carrier);
+                cur.setNext(new ListNode(carrier));
             }
 
-            return head.next;
+            return head.getNext();
         }
     }
 
@@ -69,52 +71,35 @@ public class Number0002 {
             ListNode p = header;
             int overflow = 0;
             while (l1 != null && l2 != null) {
-                int result = l1.val + l2.val + overflow;
+                int result = l1.getVal() + l2.getVal() + overflow;
                 overflow = (result >= 10 ? 1 : 0);
 
-                p.next = new ListNode(result % 10);
-                p = p.next;
-                l1 = l1.next;
-                l2 = l2.next;
+                p.setNext(new ListNode(result % 10));
+                p = p.getNext();
+                l1 = l1.getNext();
+                l2 = l2.getNext();
             }
 
-            p.next = (l1 == null ? l2 : l1);
+            p.setNext(l1 == null ? l2 : l1);
             if (overflow != 0) {
-                if (p.next == null) {
-                    p.next = new ListNode(overflow);
+                if (p.getNext() == null) {
+                    p.setNext(new ListNode(overflow));
                 } else {
-                    while (overflow != 0 && p.next != null) {
-                        p.next.val += overflow;
-                        overflow = (p.next.val >= 10 ? 1 : 0);
-                        if (p.next.val >= 10) {
-                            p.next.val -= 10;
+                    while (overflow != 0 && p.getNext() != null) {
+                        p.getNext().setVal(p.getNext().getVal() + overflow);
+                        overflow = (p.getNext().getVal() >= 10 ? 1 : 0);
+                        if (p.getNext().getVal() >= 10) {
+                            p.getNext().setVal(p.getNext().getVal() - 10);
                         }
-                        p = p.next;
+                        p = p.getNext();
                     }
                     if (overflow != 0) {
-                        p.next = new ListNode(overflow);
+                        p.setNext(new ListNode(overflow));
                     }
                 }
             }
 
-            return header.next;
-        }
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-    
-        ListNode() {
-        }
-    
-        ListNode(int val) {
-            this.val = val;
-        }
-    
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
+            return header.getNext();
         }
     }
 }

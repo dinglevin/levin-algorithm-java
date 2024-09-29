@@ -1,5 +1,7 @@
 package com.dinglevin.algorithm.leetcode;
 
+import com.dinglevin.algorithm.model.ListNode;
+
 /**
  * 描述：Number21
  *
@@ -22,49 +24,32 @@ public class Number0021 {
         ListNode p = null;
         ListNode p1 = l1;
         ListNode p2 = l2;
-        if (p1.val < p2.val) {
+        if (p1.getVal() < p2.getVal()) {
             p = p1;
-            p1 = p1.next;
+            p1 = p1.getNext();
         } else {
             p = p2;
-            p2 = p2.next;
+            p2 = p2.getNext();
         }
         result = p;
 
         while (p1 != null || p2 != null) {
             if (p1 == null) {
-                p.next = p2;
-                p2 = p2.next;
+                p.setNext(p2);
+                p2 = p2.getNext();
             } else if (p2 == null) {
-                p.next = p1;
-                p1 = p1.next;
-            } else if (p1.val < p2.val) {
-                p.next = p1;
-                p1 = p1.next;
+                p.setNext(p1);
+                p1 = p1.getNext();
+            } else if (p1.getVal() < p2.getVal()) {
+                p.setNext(p1);
+                p1 = p1.getNext();
             } else {
-                p.next = p2;
-                p2 = p2.next;
+                p.setNext(p2);
+                p2 = p2.getNext();
             }
-            p = p.next;
+            p = p.getNext();
         }
 
         return result;
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.dinglevin.algorithm.model.ListNode;
 import com.google.common.collect.Lists;
 
 public class Number0002Test {

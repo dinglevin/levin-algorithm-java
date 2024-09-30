@@ -1,7 +1,5 @@
 package com.dinglevin.algorithm.leetcode;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 19. 删除链表的倒数第 N 个结点
  * 
@@ -15,7 +13,7 @@ public class Number0019 {
 
     public static class Version1 {
         public ListNode invoke(ListNode head, int n) {
-            if (head.getNext() == null && n > 0) {
+            if (head.next == null && n > 0) {
                 return null;
             }
 
@@ -23,24 +21,24 @@ public class Number0019 {
             int distance = 0;
             while (p != null) {
                 if (distance < n) {
-                    p = p.getNext();
+                    p = p.next;
                     distance++;
                 } else {
-                    p = p.getNext();
-                    q = (q == null) ? head : q.getNext();
+                    p = p.next;
+                    q = (q == null) ? head : q.next;
                 }
             }
 
             if (distance >= n) {
                 if (q == null) {
-                    return head.getNext();
+                    return head.next;
                 }
 
                 ListNode cur = q;
-                if (q.getNext() != null) {
-                    cur.setNext(q.getNext().getNext());
+                if (q.next != null) {
+                    cur.next = q.next.next;
                 } else {
-                    cur.setNext(null);
+                    cur.next = null;
                 }
             }
 

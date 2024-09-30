@@ -1,7 +1,5 @@
 package com.dinglevin.algorithm.leetcode;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 描述：Number92
  *
@@ -27,7 +25,7 @@ public class Number0092 {
                 break;
             } else {
                 prev = p;
-                p = p.getNext();
+                p = p.next;
             }
             i++;
         }
@@ -36,7 +34,7 @@ public class Number0092 {
         }
 
         ListNode p1 = start;
-        ListNode p2 = start.getNext();
+        ListNode p2 = start.next;
         i++;
         while (p2 != null) {
             if (i == right - 1) {
@@ -45,19 +43,19 @@ public class Number0092 {
 
             ListNode temp = p1;
             p1 = p2;
-            p2 = p2.getNext();
-            p1.setNext(temp);
+            p2 = p2.next;
+            p1.next = temp;
             i++;
         }
         if (p2 != null) {
             ListNode temp = p1;
             p1 = p2;
-            p2 = p2.getNext();
-            p1.setNext(temp);
+            p2 = p2.next;
+            p1.next = temp;
             if (prev != null) {
-                prev.setNext(p1);
+                prev.next = p1;
             }
-            start.setNext(p2);
+            start.next = p2;
         }
 
         return prev == null ? p1 : head;

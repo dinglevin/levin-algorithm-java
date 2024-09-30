@@ -2,8 +2,6 @@ package com.dinglevin.algorithm.leetcode;
 
 import java.util.PriorityQueue;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 23. 合并 K 个升序链表
  * 
@@ -25,12 +23,12 @@ public class Number0023 {
                 if (index < 0) {
                     break;
                 }
-                p.setNext(lists[index]);
-                p = p.getNext();
-                lists[index] = lists[index].getNext();
+                p.next = lists[index];
+                p = p.next;
+                lists[index] = lists[index].next;
             }
 
-            return head.getNext();
+            return head.next;
         }
 
         private int findMin(ListNode[] lists) {
@@ -41,9 +39,9 @@ public class Number0023 {
                     continue;
                 }
 
-                if (lists[i].getVal() < min) {
+                if (lists[i].val < min) {
                     result = i;
-                    min = lists[i].getVal();
+                    min = lists[i].val;
                 }
             }
             return result;
@@ -68,7 +66,7 @@ public class Number0023 {
         public ListNode invoke(ListNode[] lists) {
             return mergeKList(lists, 0, lists.length - 1);
         }
-        
+
         private ListNode mergeKList(ListNode[] lists, int start, int end) {
             if (start == end) {
                 return lists[start];
@@ -87,7 +85,7 @@ public class Number0023 {
         private static class Holder implements Comparable<Holder> {
             int val;
             ListNode node;
-            
+
             public Holder(int val, ListNode node) {
                 this.val = val;
                 this.node = node;
@@ -103,7 +101,7 @@ public class Number0023 {
             PriorityQueue<Holder> queue = new PriorityQueue<>();
             for (int i = 0; i < lists.length; i++) {
                 if (lists[i] != null) {
-                    queue.offer(new Holder(lists[i].getVal(), lists[i]));
+                    queue.offer(new Holder(lists[i].val, lists[i]));
                 }
             }
 
@@ -111,14 +109,14 @@ public class Number0023 {
             ListNode tail = head;
             while (!queue.isEmpty()) {
                 Holder holder = queue.poll();
-                tail.setNext(holder.node);
-                tail = tail.getNext();
-                if (holder.node.getNext() != null) {
-                    queue.offer(new Holder(holder.node.getNext().getVal(), holder.node.getNext()));
+                tail.next = (holder.node);
+                tail = tail.next;
+                if (holder.node.next != null) {
+                    queue.offer(new Holder(holder.node.next.val, holder.node.next));
                 }
             }
 
-            return head.getNext();
+            return head.next;
         }
     }
 
@@ -130,16 +128,16 @@ public class Number0023 {
         ListNode head = new ListNode();
         ListNode tail = head;
         while (p != null && q != null) {
-            if (p.getVal() > q.getVal()) {
-                tail.setNext(q);
-                q = q.getNext();
+            if (p.val > q.val) {
+                tail.next = q;
+                q = q.next;
             } else {
-                tail.setNext(p);
-                p = p.getNext();
+                tail.next = p;
+                p = p.next;
             }
-            tail = tail.getNext();
+            tail = tail.next;
         }
-        tail.setNext(p == null ? q : p);
-        return head.getNext();
+        tail.next = (p == null ? q : p);
+        return head.next;
     }
 }

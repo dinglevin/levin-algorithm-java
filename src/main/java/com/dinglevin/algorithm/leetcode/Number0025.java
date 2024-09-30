@@ -1,7 +1,5 @@
 package com.dinglevin.algorithm.leetcode;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 描述：Number25
  *
@@ -17,16 +15,16 @@ public class Number0025 {
         OneResult result = doReverse(head, k);
         ListNode newHead = result.start;
         ListNode prevEnd = result.end;
-        while (result.end.getNext() != null) {
-            result = doReverse(result.end.getNext(), k);
+        while (result.end.next != null) {
+            result = doReverse(result.end.next, k);
             if (result.full) {
-                prevEnd.setNext(result.start);
+                prevEnd.next = (result.start);
                 prevEnd = result.end;
             }
         }
         if (!result.full) {
             result = doReverse(result.start, k);
-            prevEnd.setNext(result.start);
+            prevEnd.next = result.start;
         }
         return newHead;
     }
@@ -34,16 +32,16 @@ public class Number0025 {
     protected OneResult doReverse(ListNode start, int k) {
         int len = 1;
         ListNode prev = start;
-        ListNode current = start.getNext();
+        ListNode current = start.next;
         while (current != null && len < k) {
-            ListNode next = current.getNext();
-            current.setNext(prev);
+            ListNode next = current.next;
+            current.next = prev;
             prev = current;
             current = next;
             len++;
         }
 
-        start.setNext(current);
+        start.next = current;
         boolean full = false;
         if (len == k) {
             full = true;

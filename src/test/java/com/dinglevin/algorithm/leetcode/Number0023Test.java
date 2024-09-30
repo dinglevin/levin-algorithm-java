@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 public class Number0023Test {
     @Test
     public void testVersion1() {
@@ -20,7 +18,7 @@ public class Number0023Test {
                         buildList(new int[] { 2, 6 })
                 })));
         assertEquals(Arrays.asList(),
-                convertToList(new Number0023.Version1().invoke(new com.dinglevin.algorithm.model.ListNode[0])));
+                convertToList(new Number0023.Version1().invoke(new ListNode[0])));
         assertEquals(Arrays.asList(), convertToList(new Number0023.Version1().invoke(new ListNode[] {
                 buildList(new int[0])
         })));

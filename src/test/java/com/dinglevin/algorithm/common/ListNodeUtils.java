@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.dinglevin.algorithm.model.ListNode;
+import com.dinglevin.algorithm.leetcode.ListNode;
 import com.google.common.collect.Lists;
 
 public class ListNodeUtils {

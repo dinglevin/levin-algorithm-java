@@ -1,8 +1,8 @@
-package com.dinglevin.algorithm.model;
+package com.dinglevin.algorithm.leetcode;
 
 public class ListNode {
-    private int val;
-    private ListNode next;
+    int val;
+    ListNode next;
 
     public ListNode() {
     }

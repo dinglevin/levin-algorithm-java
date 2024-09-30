@@ -1,7 +1,5 @@
 package com.dinglevin.algorithm.leetcode;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 描述：Number21
  *
@@ -24,30 +22,30 @@ public class Number0021 {
         ListNode p = null;
         ListNode p1 = l1;
         ListNode p2 = l2;
-        if (p1.getVal() < p2.getVal()) {
+        if (p1.val < p2.val) {
             p = p1;
-            p1 = p1.getNext();
+            p1 = p1.next;
         } else {
             p = p2;
-            p2 = p2.getNext();
+            p2 = p2.next;
         }
         result = p;
 
         while (p1 != null || p2 != null) {
             if (p1 == null) {
-                p.setNext(p2);
-                p2 = p2.getNext();
+                p.next = p2;
+                p2 = p2.next;
             } else if (p2 == null) {
-                p.setNext(p1);
-                p1 = p1.getNext();
-            } else if (p1.getVal() < p2.getVal()) {
-                p.setNext(p1);
-                p1 = p1.getNext();
+                p.next = p1;
+                p1 = p1.next;
+            } else if (p1.val < p2.val) {
+                p.next = p1;
+                p1 = p1.next;
             } else {
-                p.setNext(p2);
-                p2 = p2.getNext();
+                p.next = p2;
+                p2 = p2.next;
             }
-            p = p.getNext();
+            p = p.next;
         }
 
         return result;

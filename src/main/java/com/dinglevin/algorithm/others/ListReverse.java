@@ -1,6 +1,6 @@
 package com.dinglevin.algorithm.others;
 
-import com.dinglevin.algorithm.model.ListNode;
+import com.dinglevin.algorithm.leetcode.ListNode;
 
 /**
  * 描述：ListReverse

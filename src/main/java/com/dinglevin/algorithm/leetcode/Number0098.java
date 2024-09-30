@@ -54,7 +54,7 @@ public class Number0098 {
             this.right = right;
         }
 
-        public int getVal() {
+        public int getVal(){
             return val;
         }
 

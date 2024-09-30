@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 描述：Number92Test
  *

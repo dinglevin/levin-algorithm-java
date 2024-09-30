@@ -5,8 +5,6 @@ import static com.dinglevin.algorithm.common.ListNodeUtils.toListString;
 
 import org.junit.Test;
 
-import com.dinglevin.algorithm.model.ListNode;
-
 /**
  * 描述：Number25Test
  *
